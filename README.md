@@ -16,6 +16,13 @@ Catastrophic Forgetting appearead from the very early days of Neural Networks wh
 
 <a name="cl"></a>
 ## Continual Learning
+The filed of Continual Learning tried to develop different methods that we allow Deep Learning models to learn multiple tasks in sequence while preserving the perfomance on all tasks. Continual Learning methods can be classified in three categories:
+* Replay Methods
+* Regularization-based Methods
+* Parameter Isolation Methods
+
+
+
 
 ## Methods
 
