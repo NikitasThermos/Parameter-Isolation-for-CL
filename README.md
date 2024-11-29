@@ -5,6 +5,9 @@ Project made for undergraduate thesis
 1. [Introduction](#introduction)
 2. [Catastrophic Forgetting](#cf)
 3. [Continual Learning](#cl)
+4. [Parameter Isolation](#pi)
+5. [Implementing Parameter Isolation Methods](#implement)
+6. [Datasets](#datasets)
 
 <a name="introduction"></a>
 ## Introduction
@@ -21,14 +24,28 @@ The filed of Continual Learning tried to develop different methods that we allow
 * Regularization-based Methods
 * Parameter Isolation Methods
 
+Replay methods try to keep high perfomance on all tasks by feeding the model instances (or pseudo-instances) from previously trained tasks while the model learns a new task. On the other hand, Regularization-based methods add regularization terms to the loss function that help avoiding uncontrollable updates of the model's parameters. Parameter isolation methods propose the use of different parameters of the model for each different task thus each task uses a different subset of the parameters. 
 
+<a name="pi"></a>
+## Parameter Isolation
+The isolation of model's parameters eliminates any overlap between the tasks by giving an entirely different subset of the whole network to each task. There are some methods that allow some overlap between the tasks so that parts of the model that had trained on a previous task can help on the training of a feature task by transfer learning. In most occasions the Parameter Isolation methods can be split in two categories:
+* Dynamic Architecture
+* Fixed Network
+  
+In dynamic architectures new parameters can be added to the model when a new task arrives for training. These new parameters will be trained on the new task while the other parameters remain fixed to keep the perfomance on the previous tasks stable. In fixed networks, the initial network does not change and the isolation happens by just using a subset of the model's parameters for each task. 
 
+<a name="implement"></a>
+## Implementing Parameter Isolation Methods
+We have implemented one method for each of the two main families of Parameter Isolation methods : 
+* Progressive Neural Networks (Dynamic Architecture)
+* PackNet (Fixed Network)
 
-## Methods
+Progressive Neural Networks (PNNs) add a new subnetwork each time a new task is trained. When a subnetwork is trained on one task its parameters remain stable to keep the perfomance for that task. Each new subnetwork that it is added to the model is connected with the last trained subnetwork with lateral connetioncs. For example, while training on a second task a new subnetwork is created and connected with the subnetwork that was trained on the first task  One layer of the new subnetwork is connected with the lower level layer of the previous subnetwork. In the example, the second layer of the new subnetwork is connected to the first layer of the subnetwork trained on the first task. While the first subnetwork's parameters remain the same the connections between tbe networks are trained during the second task training. These connections decide what knowledge is usefull from the previous network and can help with the new task. While predicting for the second task the instance go through both the first network (to activate the lateral connections) and the second subnetwork but the output of the first subnetwork is ignored.
 
-We have implemented two Parameter Isolation methods: 
-* Progressive Neural Networks (PNNS)
-* PackNet
+PackNet uses a single unchanble network. It trains the first task on the whole network and then it decides which are the top k most usefull parameters for that task and keeps only those for that task. Because it removes the biggest part of the network and only keeps a small amount of parameters for each task the parameters that have been selected are going through a second phase training, this time without all the other parameters. After that, the parameters selected for a task remain stable. This can happen until the remaining parameters are not enough to achieve a good perfomance on a new task.
+
+<a name="datasets"></a>
+## Datasets 
   
 and two baselines: 
 * Finetune Training
