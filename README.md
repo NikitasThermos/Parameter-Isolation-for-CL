@@ -1,4 +1,21 @@
 # Parameter-Isolation-for-CL
+Project made for undergraduate thesis
+
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Catastrophic Forgetting](#cf)
+3. [Continual Learning](#cl)
+
+<a name="introduction"></a>
+## Introduction
+The thesis focuses on one of Deep Learning's fields named Continual Learning. Continual Learning tries to alleviate a problem thant simple and traditional Deep Learning models experience named Catastrophic Forgetting. In the thesis, we try to define and understand the problem of Catastrophic Forgetting, find under which occasions it appears and the limitations it creates for the Deep Learning models. Then we present ways that we can avoid Catastrophic Forgetting with the use of Continual Learning. Further, this thesis focuses on one field of Continual Learning called Parameter Isolation, as we present how we can achieve Continual Learnign with Parameter Isolation methods, we implement two of the most popular Parameter Isolation methods and we make experiments with some of the most famous Continual Learning scenarios. 
+
+<a name="cf"></a>
+## Catastrophic Forgetting
+Catastrophic Forgetting appearead from the very early days of Neural Networks when researches tried to train models on multiple tasks sequentially. They found out that the model's perfomance on the first task decreases rapidly while training for a second different task and in many cases the perfomance is getting worse than a random initialized model without any training. Catastrophic Forgetting can also appear in cases when you train a model for the same task but you input different datasets sequentially in which the instances from the different datasets have different distributions. In those cases the model may forget the instances of the first dataset, perfoming well only when it sees instances that are closes to the second datasset. 
+
+<a name="cl"></a>
+## Continual Learning
 
 ## Methods
 
