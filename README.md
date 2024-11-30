@@ -9,6 +9,7 @@ Project made for undergraduate thesis
 5. [Implementing Parameter Isolation Methods](#implement)
 6. [Continual Learning Scenarios](#scenarios)
 7. [Experiments](#experiments)
+8. [Results](#results)
 
 <a name="introduction"></a>
 ## Introduction
@@ -79,6 +80,7 @@ All of the experiments were executed in Google Colab, and the notebooks can be f
 
 <a name="results"></a>
 ## Results
+To compare the perfomance of the models we look at the accuracy they achieved at each of tasks as well as the Average Accuaracy (AAC) on all tasks. At the end we look how much parameters the final model had (or the sum of all models' parameters in the case of Indivinual Networks).
 
 * Permuted MNIST
 
